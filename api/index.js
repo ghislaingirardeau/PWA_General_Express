@@ -15,18 +15,7 @@ webPush.setVapidDetails(
   privateVapidKey
 );
 
-const subDatabse = [
-  {
-    endpoint:
-      'https://fcm.googleapis.com/fcm/send/cFeOvYJs5bs:APA91bHFpp8mt40gjCxwYUiO1BfAJ_EVoj1_OcoH84kM-Gy3aJ_nlBAY68VHFiGNjy42HTgVajsgInun7ycthscFLlzSTQaUL303W2Orf_RcfGFblGxVzB_eqK22KHlWb7GwHicCjDim',
-    expirationTime: null,
-    keys: {
-      p256dh:
-        'BCJ5tWk-jld_dgi1X5sld9ibJkxpgGAs18KDzBfZXfX3AqdfKxp42TXYYo8Xt9hezykzmBtPxAbvIrQppX7JrxY',
-      auth: 'ytL9QImbw4fI3TfPgvhHDA',
-    },
-  },
-];
+const subDatabse = [];
 
 app.get('/', (req, res) => res.send('Express on Vercel start deploy'));
 
