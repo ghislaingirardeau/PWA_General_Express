@@ -5,7 +5,9 @@ const webPush = require('web-push');
 require('dotenv').config();
 
 const corsOptions = {
-  origin: 'https://ghislaingirardeau.github.io',
+  origin: '*',
+  credentials: true,
+  optionSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
