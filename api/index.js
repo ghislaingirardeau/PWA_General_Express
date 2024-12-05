@@ -1,8 +1,14 @@
 const express = require('express');
+const webpush = require('./routes/webpush');
 const app = express();
+const cors = require('cors');
+
+app.use(cors());
 
 app.get('/', (req, res) => res.send('Express on Vercel start deploy'));
 
-app.listen(8080, () => console.log('Server ready on port 8080.'));
+app.use('/api', webpush);
+
+app.listen(8080);
 
 module.exports = app;
