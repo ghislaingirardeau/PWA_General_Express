@@ -4,7 +4,11 @@ const cors = require('cors');
 const webPush = require('web-push');
 require('dotenv').config();
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://ghislaingirardeau.github.io',
+};
+
+app.use(cors(corsOptions));
 
 const publicVapidKey = process.env.TUTO_SW_PUBLIC;
 const privateVapidKey = process.env.TUTO_SW_PRIVATE;
