@@ -64,8 +64,8 @@ app.get('/api/send-notification', (req, res) => {
   res.json({ statue: 'Success', message: 'Message sent to push' });
 });
 
-app.get('/api/test', (req, res) => {
-  res.json({ statue: 'Success', message: 'test work' });
+app.post('/api/test', (req, res) => {
+  res.json({ statue: 'Success', message: req.body });
 });
 
 app.listen(8080);
