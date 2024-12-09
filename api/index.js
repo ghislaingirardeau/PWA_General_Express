@@ -41,7 +41,7 @@ app.post('/api/save-subscription', (req, res) => {
 
 app.get('/api/send-notification', (req, res) => {
   // EVERY TIME, THE ROUTE IS CALLED, A NOTIFICATION WILL BE SEND TO THE USER WITH THE MESSAGE ABOVE
-  console.log('send notification');
+  console.log('send notification', subDatabse);
   webPush.sendNotification(subDatabse[0], 'Hello world');
   res.json({ statue: 'Success', message: 'Message sent to push' });
 });
