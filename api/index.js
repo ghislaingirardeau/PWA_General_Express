@@ -10,6 +10,9 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
@@ -35,7 +38,7 @@ const subDatabse = [];
 
 app.get('/', (req, res) => res.send('Express on Vercel start deploy'));
 
-app.post('api/save-subscription', (req, res) => {
+app.post('/save-subscription', (req, res) => {
   // subscription IS UNIQUE FOR A DOMAIN, BUT COMMON TO ALLOW USER
   // IF ALL USERS ALLOWED NOTIFICATION => ALL GOT THE NOTIFICATION MESSAGE
   // STORE THE SUBSCRIPTION INSIDE DB
@@ -46,11 +49,16 @@ app.post('api/save-subscription', (req, res) => {
   res.json({ status: 'Success', message: 'Subscription saved!' });
 });
 
-app.get('api/send-notification', (req, res) => {
+app.get('/send-notification', (req, res) => {
   // EVERY TIME, THE ROUTE IS CALLED, A NOTIFICATION WILL BE SEND TO THE USER WITH THE MESSAGE ABOVE
   console.log(subDatabse);
   webPush.sendNotification(subDatabse[subDatabse.length - 1], 'Hello world');
   res.json({ statue: 'Success', message: 'Message sent to push' });
+});
+
+app.post('/test', (req, res) => {
+  console.log(req.body);
+  res.json({ statue: 'Success', message: req.body });
 });
 
 app.listen(8080);
