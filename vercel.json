@@ -1,7 +1,23 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "./api/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "./api/index.js",
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
+  ]
 
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+  /*  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
   "headers": [
     {
       "source": "/api/(.*)",
@@ -18,5 +34,5 @@
         }
       ]
     }
-  ]
+  ] */
 }
