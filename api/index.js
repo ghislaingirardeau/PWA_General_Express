@@ -22,6 +22,11 @@ app.use((req, res, next) => {
     'Origin, X-Requested-With, Content, Accept, Content-Type'
   );
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  if (req.method === 'OPTIONS') {
+    return res.status(200).json({
+      body: 'OK',
+    });
+  }
   next();
 });
 
