@@ -1,4 +1,17 @@
 {
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "env-cmd -f .env nodemon index.js",
+    "hmr": "nodemon index.js",
+    "nodemon": "npm run hmr",
+    "start": "node api/index.js"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
