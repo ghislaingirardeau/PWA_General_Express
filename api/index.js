@@ -4,6 +4,8 @@ const cors = require('cors');
 const webPush = require('web-push');
 require('dotenv').config();
 
+const port = 3000;
+
 const corsOptions = {
   origin: '*',
   credentials: true,
@@ -29,11 +31,12 @@ const subDatabse = [];
 app.get('/', (req, res) => res.send('Express on Vercel start deploy'));
 
 app.post('/api/save-subscription', (req, res) => {
-  // subscription IS UNIQUE FOR A DOMAIN, BUT COMMON TO ALLOW USER
-  // IF ALL USERS ALLOWED NOTIFICATION => ALL GOT THE NOTIFICATION MESSAGE
-  // STORE THE SUBSCRIPTION INSIDE DB
   const subscription = req.body;
   console.log('subscription', subscription);
+  if (!subscription) {
+    res.end();
+    return;
+  }
   subDatabse.push(subscription);
   // SEND A RESPONSE TO USER THAT HE IS CONNECTED TO THE SERVICE WORKER
   res.json({ status: 'Success', message: 'Subscription saved!' });
@@ -42,7 +45,10 @@ app.post('/api/save-subscription', (req, res) => {
 app.get('/api/send-notification', (req, res) => {
   // EVERY TIME, THE ROUTE IS CALLED, A NOTIFICATION WILL BE SEND TO THE USER WITH THE MESSAGE ABOVE
   console.log('send notification', subDatabse);
-  webPush.sendNotification(subDatabse[0], 'Hello world');
+  subDatabse.forEach((element) => {
+    webPush.sendNotification(element, 'Your Push Payload Text');
+  });
+  // webPush.sendNotification(subDatabse[0], 'Your Push Payload Text');
   res.json({ statue: 'Success', message: 'Message sent to push' });
 });
 
@@ -50,6 +56,8 @@ app.post('/api/test', (req, res) => {
   res.json({ statue: 'Success', message: req.body });
 });
 
-app.listen(8080);
+app.listen(port, () => {
+  console.log('Server running on port 3000!');
+});
 
 module.exports = app;
