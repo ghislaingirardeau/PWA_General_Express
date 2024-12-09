@@ -16,12 +16,16 @@ app.use(express.json());
 app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content, Accept, Content-Type'
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   );
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET,OPTIONS,PATCH,DELETE,POST,PUT'
+  );
   if (req.method === 'OPTIONS') {
     return res.status(200).json({
       body: 'OK',
@@ -43,7 +47,7 @@ const subDatabse = [];
 
 app.get('/', (req, res) => res.send('Express on Vercel start deploy'));
 
-app.post('/save-subscription', (req, res) => {
+app.post('/api/save-subscription', (req, res) => {
   // subscription IS UNIQUE FOR A DOMAIN, BUT COMMON TO ALLOW USER
   // IF ALL USERS ALLOWED NOTIFICATION => ALL GOT THE NOTIFICATION MESSAGE
   // STORE THE SUBSCRIPTION INSIDE DB
@@ -54,7 +58,7 @@ app.post('/save-subscription', (req, res) => {
   res.json({ status: 'Success', message: 'Subscription saved!' });
 });
 
-app.get('/send-notification', (req, res) => {
+app.get('/api/send-notification', (req, res) => {
   // EVERY TIME, THE ROUTE IS CALLED, A NOTIFICATION WILL BE SEND TO THE USER WITH THE MESSAGE ABOVE
   console.log(subDatabse);
   webPush.sendNotification(subDatabse[subDatabse.length - 1], 'Hello world');
