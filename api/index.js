@@ -27,9 +27,8 @@ app.use((req, res, next) => {
     'GET,OPTIONS,PATCH,DELETE,POST,PUT'
   );
   if (req.method === 'OPTIONS') {
-    return res.status(200).json({
-      body: 'OK',
-    });
+    res.status(200).end();
+    return;
   }
   next();
 });
@@ -65,9 +64,8 @@ app.get('/api/send-notification', (req, res) => {
   res.json({ statue: 'Success', message: 'Message sent to push' });
 });
 
-app.post('/test', (req, res) => {
-  console.log(req.body);
-  res.json({ statue: 'Success', message: req.body });
+app.get('/api/test', (req, res) => {
+  res.json({ statue: 'Success', message: 'test work' });
 });
 
 app.listen(8080);
