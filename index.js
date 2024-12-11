@@ -41,8 +41,8 @@ app.get('/', (req, res) =>
   res.send('PWA express server, for test: webpush & authentification')
 );
 
-app.post('/api/test', (req, res) => {
-  res.json({ statue: 'Success', message: req.body });
+app.get('/api/test', (req, res) => {
+  res.json({ statue: 'Success', message: 'test succeed' });
 });
 
 app.use('/api/webpush', webpush);
