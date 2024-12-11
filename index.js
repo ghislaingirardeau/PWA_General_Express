@@ -20,12 +20,12 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
+app.use(cors(corsOptions));
+
 app.use(cookieParser('pwaAuthTest'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(express.json());
-
-app.use(cors(corsOptions));
 
 app.use(
   session({
