@@ -16,6 +16,7 @@ const corsOptions = {
   origin: process.env.ORIGIN,
   credentials: true,
   optionSuccessStatus: 200,
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cookieParser('pwaAuthTest'));
@@ -49,5 +50,5 @@ app.use('/api/webpush', webpush);
 app.use('/api/webAuhtn', webAuhtn);
 
 app.listen(port, () => {
-  console.log('Server running on port 3000!');
+  console.log('Server running on port 3000!', process.env.ORIGIN);
 });
