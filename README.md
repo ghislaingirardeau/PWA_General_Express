@@ -1,6 +1,10 @@
-# Note Web Push API
-
 **Associer avec le projet Quasar-vueSchool, la shopping Liste**
+
+# Web Auth
+
+Sign in without password instead use PassKey (fingerprint par exemple)
+
+# Web Push API
 
 ## Host
 

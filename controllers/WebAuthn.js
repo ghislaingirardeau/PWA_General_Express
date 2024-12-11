@@ -2,9 +2,15 @@ import { Fido2Lib } from 'fido2-lib';
 import crypto from 'crypto';
 import base64url from 'base64url';
 
+/**
+ * L'authentification ne se fait pas via le password mais via un passkey qui sera enregistrer dans google password
+ * process env de DOMAIN et ORIGIN pour gérer la prod / dev
+ * Fonctionne en DEV mais erreur de CORS en PROD
+ */
+
 const fido = new Fido2Lib({
   timeout: 60000,
-  rpId: process.env.DOMAIN,
+  rpId: process.env.DOMAIN, // nom du site qui apparaitra dans google password pour le retrouver
   rpName: 'PWA authentification test', // display name inside google password
   rpIcon: 'https://whatpwacando.today/src/img/icons/icon-512x512.png', // icon display inside google password
   challengeSize: 128,
@@ -105,6 +111,10 @@ export async function authenticate(req, res) {
 
     try {
       await fido.assertionResult(credential, assertionExpectations); // will throw on error
+
+      /* 
+      Si authentifier renverra ici toutes les données dont un user a besoin post authentification
+      */
 
       res.json({ status: 'ok' });
     } catch (e) {
