@@ -28,11 +28,15 @@ webPush.setVapidDetails(
 
 const subDatabse = [];
 
-app.get('/', (req, res) => res.send('Express on Vercel start deploy'));
+app.get('/', (req, res) => res.send('PWA express server'));
 
 app.post('/api/save-subscription', (req, res) => {
   const subscription = req.body;
   console.log('subscription', subscription);
+  /* 
+  SI je ne recois pas de souscription du front alors je retourne
+  Cela arrive notamment si le sw est activé au chargement de l'app
+  */
   if (!subscription) {
     res.end();
     return;
@@ -43,12 +47,20 @@ app.post('/api/save-subscription', (req, res) => {
 });
 
 app.get('/api/send-notification', (req, res) => {
-  // EVERY TIME, THE ROUTE IS CALLED, A NOTIFICATION WILL BE SEND TO THE USER WITH THE MESSAGE ABOVE
+  // EVERY TIME, THE ROUTE IS CALLED, A NOTIFICATION WILL BE SEND TO THE USERS WITH THE MESSAGE ABOVE
   console.log('send notification', subDatabse);
+  /* 
+  Envoie une notification A TOUS les utilisateurs avec une boucle each()
+  Sans boucle, idée est de recuperer le "registration" de l'utilisateur que l'on souhaite notifier
+  */
   subDatabse.forEach((element) => {
-    webPush.sendNotification(element, 'Your Push Payload Text');
+    webPush.sendNotification(element, 'Notification to all users');
   });
-  // webPush.sendNotification(subDatabse[0], 'Your Push Payload Text');
+  // POUR TOUCHER UN SEUL UTILISATEUR
+  // webPush.sendNotification(
+  //   subDatabse[subDatabse.length - 1],
+  //   'Notification to the last user only'
+  // );
   res.json({ statue: 'Success', message: 'Message sent to push' });
 });
 

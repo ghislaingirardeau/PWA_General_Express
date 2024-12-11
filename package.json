@@ -8,7 +8,8 @@
     "server": "env-cmd -f .env nodemon index.js",
     "hmr": "nodemon index.js",
     "nodemon": "npm run hmr",
-    "start": "node api/index.js"
+    "start": "node index.js",
+    "dev": "node --watch index.js"
   },
   "author": "",
   "license": "ISC",
