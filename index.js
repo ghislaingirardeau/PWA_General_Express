@@ -27,7 +27,9 @@ webPush.setVapidDetails(
 
 const subDatabse = [];
 
-app.get('/', (req, res) => res.send('PWA express server'));
+app.get('/', (req, res) =>
+  res.send('PWA express server, for test: webpush & authentification')
+);
 
 app.post('/api/save-subscription', (req, res) => {
   const subscription = req.body;
