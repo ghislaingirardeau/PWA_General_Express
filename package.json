@@ -18,6 +18,13 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.1",
-    "web-push": "^3.6.7"
+    "web-push": "^3.6.7",
+    "fido2-lib": "^3.5.3",
+    "base64url": "^3.0.1",
+    "body-parser": "^1.4.3",
+    "cookie-parser": "^1.4.7",
+    "error-handler": "^1.0.0",
+    "errorhandler": "^1.5.1",
+    "express-session": "^1.18.1"
   }
 }
