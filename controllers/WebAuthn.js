@@ -4,7 +4,7 @@ import base64url from 'base64url';
 
 const fido = new Fido2Lib({
   timeout: 60000,
-  rpId: 'ghislaingirardeau.github.io',
+  rpId: process.env.DOMAIN,
   rpName: 'PWA authentification test', // display name inside google password
   rpIcon: 'https://whatpwacando.today/src/img/icons/icon-512x512.png', // icon display inside google password
   challengeSize: 128,

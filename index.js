@@ -16,7 +16,7 @@ const corsOptions = {
   origin: process.env.ORIGIN,
   credentials: true,
   optionSuccessStatus: 200,
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type'],
 };
 
 app.use(cookieParser('pwaAuthTest'));
