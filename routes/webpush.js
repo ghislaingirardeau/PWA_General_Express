@@ -1,10 +1,10 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express';
+import { sendNotification, subscription } from '../controllers/webpush.js';
 
-const { sendNotification, subscription } = require('../controllers/webpush');
+const router = express.Router();
 
 router.post('/save-subscription', subscription);
 
 router.get('/send-notification', sendNotification);
 
-module.exports = router;
+export default router;

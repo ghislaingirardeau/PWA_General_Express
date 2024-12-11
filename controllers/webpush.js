@@ -1,4 +1,4 @@
-const webPush = require('web-push');
+import webPush from 'web-push';
 
 const publicVapidKey = process.env.TUTO_SW_PUBLIC;
 const privateVapidKey = process.env.TUTO_SW_PRIVATE;
@@ -13,7 +13,6 @@ const subDatabse = [];
 
 export function subscription(req, res) {
   const subscription = req.body;
-  console.log('subscription', subscription);
   /* 
       SI je ne recois pas de souscription du front alors je retourne
       Cela arrive notamment si le sw est activé au chargement de l'app
@@ -23,6 +22,8 @@ export function subscription(req, res) {
     return;
   }
   subDatabse.push(subscription);
+  console.log('subscription', subDatabse);
+
   // SEND A RESPONSE TO USER THAT HE IS CONNECTED TO THE SERVICE WORKER
   res.json({ status: 'Success', message: 'Subscription saved!' });
 }

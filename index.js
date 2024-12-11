@@ -1,8 +1,9 @@
-const express = require('express');
+import express from 'express';
+import cors from 'cors';
+import 'dotenv/config';
+import webpush from './routes/webpush.js';
+
 const app = express();
-const cors = require('cors');
-require('dotenv').config();
-const webpush = require('./routes/webpush');
 
 const port = 3000;
 
@@ -29,5 +30,3 @@ app.use('/api/webpush', webpush);
 app.listen(port, () => {
   console.log('Server running on port 3000!');
 });
-
-module.exports = app;
